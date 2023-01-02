@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(91709156, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="watch/91709156" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+<!-- /Yandex.Metrika counter -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Обнуление стилей -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/myiconfont.css">
+    <link rel="stylesheet" href="css/nouislider/nouislider.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/uptHeader.css">
+    <link href="font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <title>Подбор фильма</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="logo"><a href="index.htm" class="logo__link"><i class="icon-video"></i>Movie<span style="font-weight: 700">Search</span></a></div>
+            <div class="d1">
+      <form class="search-form" action="search.php" method="post">
+      <input type="text" placeholder="Найти фильм..." name="pole_search">
+      <button type="submit"></button>
+      </form>
+    </div>
+            <nav class="header__menu">
+                <ul class="header__list">
+                    <li class="header__item"><a class="header__link" href="index.htm">Главная</a></li>
+                    <li class="header__item"><a class="header__link" id="myBtn">Подобрать фильм</a>
+                    <div id="myModal" class="modal">
+        
+        <!-- Модальное содержание -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Настройки поиска</h2>
+            </div>
+            <div class="modal-body">
+                <form class="sort" action="search.php" method="post">
+                    <div class="sort__genre choice-field">
+                        <label class="choice-field__label" for="genre">Жанр</label>
+                        <select class="choice-field__select" name="state" id="genre">
+                            <option class="choice-field__option" value="0" selected="" disabled="" hidden="">Выберите жанр</option>
+                           <!-- Заполнение через js -->
+                        </select>
+                    </div>
+                    <div class="sort__country choice-field">
+                        <label class="choice-field__label" for="country">Страна</label>
+                        <select class="choice-field__select" id="country" name="country">
+                            <option class="choice-field__option" value="0" selected="" disabled="" hidden="">Выберите страну</option>
+                            <!-- Заполнение через js -->
+                        </select>
+                    </div>
+                    <div class="sort__year text-field year-sort">
+                        <div class="year-sort__name">Год</div>
+                        <div class="year-sort__body">
+                            <div class="year-sort__left">
+                                <label class="text-field__label year-sort__label" for="year-from">от</label>
+                                <input class="text-field__input year-sort__input" id="year-from" name="year-from" type="number" min="1800" max="2022" placeholder="1980">
+                            </div>
+                        <div class="year-sort__right">
+                            <label class="text-field__label year-sort__label" for="year-to">до</label>
+                                <input class="text-field__input year-sort__input" id="year-to" name="year-to" type="number" min="1800" max="2022" placeholder="2014">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="sort__country choice-field">
+                        <label class="choice-field__label" for="type">Тип</label>
+                        <select class="choice-field__select sort__country" id="type" name="type">
+                            <option class="choice-field__option" selected="" disabled="" hidden="">Выберите тип</option>
+                            <option class="choice-field__option" value="ALL">Все</option>
+                            <option class="choice-field__option" value="FILM">Фильмы</option>
+                            <option class="choice-field__option" value="TV_SHOW">ТВ шоу</option>
+                            <option class="choice-field__option" value="TV_SERIES">Сериалы</option>
+                            <option class="choice-field__option" value="MINI_SERIES">Мини-сериалы</option>
+                        </select>
+                    </div>
+                    <div class="sort__rating rating">
+                        <div class="rating__title">Рейтинг</div>
+                        <div id="slider"></div>
+                        <!-- Поля ниже, из них забирать данные -->
+                        <input class="text-field__input rating__input-min" name="rating_min" type="number">
+                        <input class="text-field__input rating__input-max" name="rating_max" type="number">
+                    </div>
+                <button class="modal__btn btn">Далее</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+                </li>
+                    <li class="header__item"><a class="header__link" href="about.php.html">О проекте</a></li>
+                </ul>
+            </nav>
+            <div class="header__auth auth">
+                                <div class="auth__signin"><a href="signin.php.html" class="auth__btn">Войти</a></div>
+                <div class="auth__signup"><a href="signup.php.html" class="auth__btn">Зарегистрироваться</a></div>
+                            </div>
+        </header>
+        <main class="main">
+        <div class="loading">
+                <div class="loader"></div>
+                </div>
+            <div class="main__search search">
+                
+
+<div class='film-btn'>
+                <a class='film-btn__link' href='film.php.html?ID=1252447'>
+                    <img class='film-btn__img' src="images/no-poster.gif">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php.html?ID=1252447'>
+                Лорды раздевалки
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-1.html?ID=962472'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/4716873/ccc5d1a9-a7fd-44e4-b1f6-a5b031c886a5/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-1.html?ID=962472'>
+                Hot Wheels. За гранью воображения
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-2.html?ID=1309325'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1600647/d667fbc0-ffa6-4fe5-97e2-0d60c22f6d00/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-2.html?ID=1309325'>
+                Космос
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-3.html?ID=1043658'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1599028/73abc377-955c-4b59-a713-108c5ceee422/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-3.html?ID=1043658'>
+                Шоу Грязного Фрэнка
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-4.html?ID=4789626'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1898899/7af6da1b-a89b-4cc6-a899-1d58eaf5fd73/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-4.html?ID=4789626'>
+                Блич: Тысячелетняя кровавая война
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-5.html?ID=1003587'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1599028/83af1bdc-554e-49d2-8c4d-5b70d884ec6b/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-5.html?ID=1003587'>
+                Гамильтон
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-6.html?ID=972889'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1773646/61c24fca-8e88-4820-9d1f-0c274ca94810/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-6.html?ID=972889'>
+                BadComedian
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-7.html?ID=1007472'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1599028/79e14802-4ff8-4534-96c5-71abe3708b6a/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-7.html?ID=1007472'>
+                Планета Земля 2
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-8.html?ID=351771'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1773646/5f2685cc-5361-4e7f-9079-460d87390a62/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-8.html?ID=351771'>
+                Depeche Mode: Devotional
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-9.html?ID=45319'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/4303601/03c5124a-e59a-474b-8dc9-6227db156566/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-9.html?ID=45319'>
+                Жил-был пёс
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-10.html?ID=77044'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1900788/35c6cb89-75e3-4efa-8d00-5bbf7175c066/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-10.html?ID=77044'>
+                Друзья
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-11.html?ID=300980'>
+                    <img class='film-btn__img' src="images/no-poster.gif">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-11.html?ID=300980'>
+                Буш-музыка
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-12.html?ID=674243'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1599028/51ba4747-4ffc-4604-9da3-d17ac964cb04/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-12.html?ID=674243'>
+                Счастливые люди
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-13.html?ID=952236'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/4303601/6f264ae2-ce76-4179-b63d-68d324789758/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-13.html?ID=952236'>
+                Hot Wheels. Мегатрасса
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-14.html?ID=1339977'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1704946/ff7fd32d-309d-40e7-8276-eaed46f8e4b0/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-14.html?ID=1339977'>
+                Уровень тревоги: Полночь
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-15.html?ID=988056'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/6201401/a4a113fe-d75c-4193-9148-5cbb3488d945/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-15.html?ID=988056'>
+                Малышарики
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-16.html?ID=2500772'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1600647/5df6b993-23e1-483d-93be-34a1114e7901/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-16.html?ID=2500772'>
+                Жизнь человека. Последнее интервью
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-17.html?ID=1368895'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/4716873/624356c7-62b2-4d52-be74-160489056f47/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-17.html?ID=1368895'>
+                Astartes
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-18.html?ID=1073233'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1629390/9ed031f3-191b-4a90-8bf7-4f9a3b823053/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-18.html?ID=1073233'>
+                Голубая планета 2
+            </a></h3>
+              </div><div class='film-btn'>
+                <a class='film-btn__link' href='film.php-19.html?ID=762381'>
+                    <img class='film-btn__img' src="get-kinopoisk-image/1704946/ef2f5aa6-daf6-4b71-acb1-40dd61d9c692/360">
+                </a>
+                <h3 class='film-btn__title'><a class='film-btn__link' href='film.php-19.html?ID=762381'>
+                Космос: Пространство и время
+            </a></h3>
+              </div>            </div>
+        </main>
+        <footer class="footer">
+            <div class="feedback">Обратная связь: <a href="mailto:Voize2@yandex.ru" class="feedback__email">Voize2@yandex.ru</a></div>
+            <div class="copyright">© MovieSearch Сервис подбора фильмов, сериалов и мультфильмов</div>
+    </footer>
+    </div>
+    <script type="module" src="js/script.js"></script>
+    <script id="cookie" type="module" src="js/cookies.js"></script>
+    <script type="module" src="js/modules/fillingData.js"></script>
+
+
+    <script src="js/searchLoader.js"></script>
+    
+
+
+
+</body>
+
+</html>
