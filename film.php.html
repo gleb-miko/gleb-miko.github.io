@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(91709156, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+</script>
+<noscript><div><img src="watch/91709156" style="position:absolute; left:-9999px;" alt=""></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Обнуление стилей -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/film.css">
+    <link rel="stylesheet" href="css/nouislider/nouislider.css">
+    <link rel="stylesheet" href="css/uptHeader.css">
+    <link href="font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/myiconfont.css">
+
+    <title>Зеленая миля</title>
+</head>
+
+<body>
+    <div class="wrapper">
+    <header class="header">
+            <div class="logo"><a href="index.htm" class="logo__link"><i class="icon-video"></i>Movie<span style="font-weight: 700">Search</span></a></div>
+            <div class="d1">
+      <form class="search-form" action="search.php" method="post">
+      <input type="text" placeholder="Найти фильм..." name="pole_search">
+      <button type="submit"></button>
+      </form>
+    </div>
+            <nav class="header__menu">
+                <ul class="header__list">
+                    <li class="header__item"><a class="header__link" href="index.htm">Главная</a></li>
+                    <li class="header__item"><a class="header__link" id="myBtn">Подобрать фильм</a>
+                    <div id="myModal" class="modal">
+        
+        <!-- Модальное содержание -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2>Настройки поиска</h2>
+            </div>
+            <div class="modal-body">
+                <form class="sort" action="search.php" method="post">
+                    <div class="sort__genre choice-field">
+                        <label class="choice-field__label" for="genre">Жанр</label>
+                        <select class="choice-field__select" name="state" id="genre">
+                            <option class="choice-field__option" value="0" selected="" disabled="" hidden="">Выберите жанр</option>
+                           <!-- Заполнение через js -->
+                        </select>
+                    </div>
+                    <div class="sort__country choice-field">
+                        <label class="choice-field__label" for="country">Страна</label>
+                        <select class="choice-field__select" id="country" name="country">
+                            <option class="choice-field__option" value="0" selected="" disabled="" hidden="">Выберите страну</option>
+                            <!-- Заполнение через js -->
+                        </select>
+                    </div>
+                    <div class="sort__year text-field year-sort">
+                        <div class="year-sort__name">Год</div>
+                        <div class="year-sort__body">
+                            <div class="year-sort__left">
+                                <label class="text-field__label year-sort__label" for="year-from">от</label>
+                                <input class="text-field__input year-sort__input" id="year-from" name="year-from" type="number" min="1800" max="2022" placeholder="1980">
+                            </div>
+                        <div class="year-sort__right">
+                            <label class="text-field__label year-sort__label" for="year-to">до</label>
+                                <input class="text-field__input year-sort__input" id="year-to" name="year-to" type="number" min="1800" max="2022" placeholder="2014">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="sort__country choice-field">
+                        <label class="choice-field__label" for="type">Тип</label>
+                        <select class="choice-field__select sort__country" id="type" name="type">
+                            <option class="choice-field__option" selected="" disabled="" hidden="">Выберите тип</option>
+                            <option class="choice-field__option" value="ALL">Все</option>
+                            <option class="choice-field__option" value="FILM">Фильмы</option>
+                            <option class="choice-field__option" value="TV_SHOW">ТВ шоу</option>
+                            <option class="choice-field__option" value="TV_SERIES">Сериалы</option>
+                            <option class="choice-field__option" value="MINI_SERIES">Мини-сериалы</option>
+                        </select>
+                    </div>
+                    <div class="sort__rating rating">
+                        <div class="rating__title">Рейтинг</div>
+                        <div id="slider"></div>
+                        <!-- Поля ниже, из них забирать данные -->
+                        <input class="text-field__input rating__input-min" name="rating_min" type="number">
+                        <input class="text-field__input rating__input-max" name="rating_max" type="number">
+                    </div>
+                <button class="modal__btn btn">Далее</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+                </li>
+                    <li class="header__item"><a class="header__link" href="about.php.html">О проекте</a></li>
+                </ul>
+            </nav>
+            <div class="header__auth auth">
+                                <div class="auth__signin"><a href="signin.php.html" class="auth__btn">Войти</a></div>
+                <div class="auth__signup"><a href="signup.php.html" class="auth__btn">Зарегистрироваться</a></div>
+                            </div>
+        </header>
+        <main class="main">
+            <div class="film">
+                <div class="film__info">
+                    <div class="film__poster poster">
+                        <img src="get-kinopoisk-image/1599028/4057c4b8-8208-4a04-b169-26b0661453e3/360" alt="film-image" class="poster__img">
+                    </div>
+                    <div class="film__about about">
+                        <div class="film-header">
+                            <h2 class="film-header__title">Зеленая миля</h2>
+                            <h3 class="film-header__undertitle">The Green Mile</h3>
+                        </div>
+                        <div class="film-main">
+                            <div class="film-main__describtion">Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю» по пути к месту казни. Пол повидал много заключённых и надзирателей за время работы. Однако гигант Джон Коффи, обвинённый в страшном преступлении, стал одним из самых необычных обитателей блока.</div>
+                            <div class="film-main__rating"><i class="icon-fire"></i> Рейтинг: 9.1</div>
+                            <div class="film-main__year"><i class="icon-calendar"></i> Год производства: 1999</div>
+                            <div class="film-main__genres"><i class="icon-puzzle"></i> Жанр: драма криминал фэнтези </div>
+                            <div class="film-main__countries"><i class="icon-globe"></i> Страна: США </div>
+                            <div class="film-main__duration"><i class="icon-clock"></i> Длительность: 189 мин.</div>
+                        </div>
+                    </div>
+                </div>
+            <div class="film__player">
+                <img class="unavailable-img" src="img/player-unavailable.jpg" alt="unavailable">
+            <div id="yohoho" data-kinopoisk="435"></div>
+<script src="yo.js"></script>
+            </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="feedback">Обратная связь: <a href="mailto:Voize2@yandex.ru" class="feedback__email">Voize2@yandex.ru</a></div>
+            <div class="copyright">© MovieSearch Сервис подбора фильмов, сериалов и мультфильмов</div>
+    </footer>
+    </div>
+
+    <script type="module" src="js/script.js"></script>
+    <script type="module" src="js/scriptFilm.js"></script>
+    <script id="cookie" type="module" src="js/cookies.js"></script>
+    <script type="module" src="js/modules/fillingData.js"></script>
+
+</body>
+
+</html>
